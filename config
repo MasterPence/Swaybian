@@ -1,0 +1,102 @@
+#КЛАВИША МОДИФИКАТОР
+	set $mod Mod4
+	
+#РАСКЛАДКА КЛАВИАТУРЫ
+	input * {
+	    xkb_layout us,ru
+	    xkb_options grp:alt_shift_toggle
+	}
+
+#ЭМУЛЯТОР ТЕРМИНАЛА И МЕНЮ
+	set $term foot
+	set $menu dmenu_path | wofi --show drun -I | xargs swaymsg exec --
+
+#ГОРЯЧИЕ КЛАВИШИ
+	#ЗАПУСК ТЕРМИНАЛА
+	bindsym $mod+Return exec $term
+	
+	#ЗАПУСК МЕНЮ
+	bindsym $mod+d exec $menu
+	
+	#ЗАКРЫТЬ ОКНО
+	bindsym $mod+Shift+q kill
+	
+	#ОБНОВИТЬ КОНФИГ
+	bindsym $mod+Shift+r reload
+
+#ВЫХОД ИЗ SWAY
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Выйти из Sway' -b 'Yes, exit sway' 'swaymsg exit'
+
+#ГАПСЫ
+	gaps inner 10
+	gaps outer 4
+	smart_gaps on
+
+#ОТКЛЮЧЕНИЕ ЗАГОЛОВКОВ ОКОН
+	default_border pixel 1
+	
+#РАЗМЕР РАМОК
+	for_window [tiling] border pixel 1
+	
+#ОТКЛЮЧЕНИЕ РАМКИ КОГДА ОТКРЫТО ОДНО ОКНО
+	smart_borders on
+
+#ЦВЕТА РАМОК
+	#                       Рамка   Фон   Индикатор Родительская_рамка
+	client.focused          #ffd700 #ffd700 #ffd700 #ffd700
+	client.focused_inactive	#ccac00 #ccac00 #ccac00 #ccac00
+	client.unfocused	#ccac00 #ccac00 #ccac00 #ccac00
+	client.urgent		#ffd700 #ffd700 #ffd700 #ffd700
+	client.placeholder	#ccac00 #ccac00 #ccac00 #ccac00
+
+	#client.focused — окно в фокусе
+	#client.unfocused — окно вне фокуса
+	#client.focused_inactive — окно в фокусе но не активно
+	#client.urgent — окно требует внимания (всплывающее) 
+
+#ПЕРЕМЕЩЕНИЕ ОКОН
+	#СМЕНА ФОКУСА
+	bindsym $mod+Left focus left
+	bindsym $mod+Right focus right
+	bindsym $mod+Up focus up
+	bindsym $mod+Down focus down
+	
+	#ПЕРЕМЕЩЕНИЕ ФОКУСНОГО ОКНА
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+	
+	#ПЕРЕКЛЮЧЕНИЕ ВОРКСПЕЙСА
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+
+    #ПЕРЕМЕЩЕНИЕ ОКНА НА ВОРКСПЕЙС
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+
+	
+	
+#ОБОИ
+	output * bg .usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
+#WAYBAR
+	bar {
+		swaybar_command waybar
+	}
