@@ -1,0 +1,29 @@
+#!/bin/sh
+
+#УСТАНОВКА ПАКЕТОВ SWAY ДЛЯ DEBIAN BOOKWORM/TESTING
+sudo apt install sway waybar swaylock swayidle swaybg
+
+#ПАКЕТЫ ДЛЯ СЕТЕВЫХ ИНТЕРФЕЙСОВ
+sudo apt install policykit-1-gnome network-manager network-manager-gnome
+
+#ПАКЕТЫ
+sudo apt install ranger wofi tilix mako-notifier wayland-protocols xwayland mc git build-essential nala fonts-font-awesome
+
+#ДЛЯ ВИДЕОКАРТ NVIDIA НЕОЮХОДИМЫ ПАКЕТЫ libnvidia-egl-wayland-dev
+
+#ТЕКСТОВЫЙ РЕДАКТОР
+sudo apt install vim
+
+#ЗАВИСИМОСТИ ДЛЯ ly
+sudo apt install libpam0g-dev libxcb-xkb-dev
+
+#УСТАНОВКА ly
+git clone --recurse-submodules https://github.com/nullgemm/ly.git
+cd ly
+make
+sudo make install installsystedmd
+sudo systemctl enable ly
+
+
+#ПЕРЕЗАГРУЗКА
+sudo reboot
